@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SklepSportowy.Models.KoszykLinia>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nazwa Produktu</th>
+            <th>Cena produktu</th>
+            <th>Ilość</th>
+            <th>Wartość</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Produkt.NazwaProduktu</td>
+                <td>@item.Produkt.CenaProduktu</td>
+                <td>@item.Ilosc</td>
+                <td>@item.Ilosc*@item.Produkt.CenaProduktu</td>
+                <td>@Html.ActionLink("Usuń","UsunZKoszyka",new {item.Produkt })</td>
+            </tr>
+        }
+        <tr>
+            <td>@Html.Action("WartoscKoszyka")</td>
+        </tr>
+    </tbody>
+    
+</table>
+<input style="padding:20px; float:right" type="submit" value="Kontynuj zakupy" />
+<input style="padding:20px; float:left" type="submit" value="Zamów" />

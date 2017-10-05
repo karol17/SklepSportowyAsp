@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SklepSportowy.Models.Produkt>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<table>
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.NazwaProduktu)</th>
+    
+        <th>@Html.DisplayNameFor(m => m.OpisProduktu)</th>
+    
+        <th>@Html.DisplayNameFor(m => m.CenaProduktu)</th>
+   
+        <th>@Html.DisplayNameFor(m => m.DataDodania)</th>
+  
+        <th>@Html.DisplayNameFor(m => m.Kategoria.OpisKategorii)</th>
+    </tr>
+    
+@foreach(var item in Model)
+{
+    <tr>
+        <td>@item.NazwaProduktu</td>
+        <td>@item.OpisProduktu</td>
+        <td>@item.CenaProduktu</td>
+        <td>@item.DataDodania</td>
+        <td>@item.Kategoria</td>
+    </tr>
+    
+
+}
+    </table>*@

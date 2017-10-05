@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SklepSportowy.Models.Produkt>
+@{
+    ViewBag.Title = "List";
+}
+
+
+<section class="sekcja-produkty">
+
+    <h1>Piłka nożna</h1>
+    
+        @foreach (var item in Model)
+        {
+            <div id="produkt">
+
+                <img src="~/Content/Images/pilka.jpg" />
+                <h2>@item.NazwaProduktu</h2>
+                <h3>@item.CenaProduktu</h3>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, aut incidunt! Ratione quas harum saepe iusto
+                    nemo error rem exercitationem, cumque veniam sequi nihil debitis unde numquam porro maiores itaque!
+                    @*@Html.ActionLink("Więcej","ProduktSzczegoly","Produkt",new { id = item.ProduktId })</p>*@
+                    <a href="@Url.Action("ProduktSzczegoly", "Produkt", new { id = item.ProduktId})">Więcej</a>
+
+                    <input type="submit" value="Dodaj do koszyka" />
+            </div>
+        }
+
+    
+    
+
+</section>
