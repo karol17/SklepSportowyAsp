@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SklepSportowy.Models.KoszykLinia>
+﻿@model IEnumerable<SklepSportowy.Models.PozycjaZamowienia>
 @{
     ViewBag.Title = "List";
 }
@@ -19,11 +19,9 @@
         @foreach(var item in Model)
         {
             <tr>
-                <td>@item.Produkt.NazwaProduktu</td>
-                <td>@item.Produkt.CenaProduktu</td>
+                <td>@item.produkt.NazwaProduktu</td>
+                <td>@item.produkt.CenaProduktu</td>
                 <td>@item.Ilosc</td>
-                <td>@item.Ilosc*@item.Produkt.CenaProduktu</td>
-                <td>@Html.ActionLink("Usuń","UsunZKoszyka",new {item.Produkt })</td>
             </tr>
         }
         <tr>

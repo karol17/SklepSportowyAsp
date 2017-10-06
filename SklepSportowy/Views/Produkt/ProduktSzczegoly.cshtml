@@ -13,7 +13,7 @@
 
         @* @Html.BeginForm("DodajDoKoszyka", "Koszyk", new { Model.})*@
 
-        <input type="submit" value="Do koszyka" />
+        <a href="@Url.Action("DodajDoKoszyka","Koszyk",new { produkt = Model })" ><input type="submit" value="Do koszyka" /></a>
     </div>
     <div class="right">
         <p>

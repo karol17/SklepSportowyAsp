@@ -26,7 +26,7 @@ namespace SklepSportowy.Models
         public DateTime DataZamowienia { get; set; }
         public StanZamowienia StanZamowienia { get; set; }
         public decimal WartoscZamowienia { get; set; }
-        List<PozycjaZamowienia> PozycjaZamowienia { get; set; }
+        public List<PozycjaZamowienia> PozycjaZamowienia { get; set; }
     }
 
     public enum StanZamowienia

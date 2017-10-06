@@ -134,8 +134,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Consts.cs" />
+    <Compile Include="Infrastructure\ISessionMeneger.cs" />
+    <Compile Include="Infrastructure\KoszykMeneger.cs" />
+    <Compile Include="Infrastructure\SessionMeneger.cs" />
     <Compile Include="Models\Kategoria.cs" />
     <Compile Include="Models\Koszyk.cs" />
+    <Compile Include="Models\PozycjaKoszyka.cs" />
     <Compile Include="Models\PozycjaZamowienia.cs" />
     <Compile Include="Models\Produkt.cs" />
     <Compile Include="Models\Zamowienie.cs" />
