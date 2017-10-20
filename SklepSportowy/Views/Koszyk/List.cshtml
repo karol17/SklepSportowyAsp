@@ -1,34 +1,41 @@
-﻿@model IEnumerable<SklepSportowy.Models.PozycjaZamowienia>
+﻿@model IEnumerable<SklepSportowy.Models.PozycjaKoszyka>
 @{
     ViewBag.Title = "List";
 }
 
 <h2>List</h2>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nazwa Produktu</th>
-            <th>Cena produktu</th>
-            <th>Ilość</th>
-            <th>Wartość</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var item in Model)
-        {
+<div id="koszyk">
+    <table>
+       <thead>
+           <tr>
+               <th></th>
+               <th>Nazwa</th>
+               <th>Cena</th>
+               <th>Ilość</th>
+               <th>Wartość</th>
+           </tr>
+       </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="Images/pilka.jpg" alt="pilka" width="127" height="122" /></td>
+                    <td>@item.Produkt.NazwaProduktu</td>
+                    <td>@item.Produkt.CenaProduktu</td>
+                    <td>@item.Ilosc</td>
+                    <td>59.00 zł</td>
+                    @*<td>@Html.Action("WartoscKoszyka","Koszyk")</td>*@
+                    <td><input type="submit" value="Usuń"></td>
+
+                </tr>
+            }
             <tr>
-                <td>@item.produkt.NazwaProduktu</td>
-                <td>@item.produkt.CenaProduktu</td>
-                <td>@item.Ilosc</td>
+                <td colspan="4"></td>
+                <td><input type="submit" value="Kontynuj zakupy"></td>
+                <td><input type="submit" value="Zapłać"></td>
+
             </tr>
-        }
-        <tr>
-            <td>@Html.Action("WartoscKoszyka")</td>
-        </tr>
-    </tbody>
-    
-</table>
-<input style="padding:20px; float:right" type="submit" value="Kontynuj zakupy" />
-<input style="padding:20px; float:left" type="submit" value="Zamów" />
+        </tbody>
+    </table>
+</div>

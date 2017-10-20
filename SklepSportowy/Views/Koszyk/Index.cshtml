@@ -1,0 +1,95 @@
+﻿@model SklepSportowy.ViewModel.KoszykViewModel
+    @using SklepSportowy.Infrastructure
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List</h2>
+
+<div id="koszyk">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.PozycjaKoszyka)
+            {
+                <tr id="koszyk-wiersz-@item.Produkt.ProduktId">
+                    <td><img src="~/Content/Images/pilka.jpg" alt="pilka" width="127" height="122" /></td>
+                    <td>@item.Produkt.NazwaProduktu</td>
+                    <td>@item.Produkt.CenaProduktu</td>
+                    <td>@item.Ilosc</td>
+                    
+                    
+                    <td>
+                        
+                            <input type="submit" class="usun-produkt" data-id="@item.Produkt.ProduktId" value="Usuń">
+                        
+                    </td>
+
+                </tr>
+            }
+            <tr id="koszyk-empty-message" @if (Model.PozycjaKoszyka != null && Model.PozycjaKoszyka.Count > 0) {<text>clas="hidden"</text> }>
+                <td>Koszyk jest pusty.</td>
+            </tr>
+         
+        </tbody>
+    </table>
+    <div id="calkowita-cena-wartosc">
+        <b>Razem: @String.Format("{0:0.##}", Model.WartoscKoszyka) zł</b>
+    </div>
+    <div style="float:right">
+        
+        <input type="submit" value="Kontynuj zakupy">
+        <input type="submit" value="Zapłać">
+    </div>
+    
+</div>
+@section Scripts{
+
+
+        
+
+
+        @System.Web.Optimization.Scripts.Render("~/bundles/jqueryAndJqueryUI")
+
+     <script type="text/javascript">
+         $(function () {
+             $(".usun-produkt").click(function () {
+
+                 var recordDoUsuniecia = $(this).attr("data-id");
+
+                 if (recordDoUsuniecia != '') {
+                     $.post("/Koszyk/UsunZKoszyka", { "produktId": recordDoUsuniecia },
+                         function (response) {
+                             if (response.IloscUsuwanychProdutkow == 0) {
+
+                                 $('#koszyk-wiersz-' + response.UsunProduktId).fadeOut('slow', function () {
+                                     if (response.KoszykIloscPozycji == 0) {
+                                         $("#koszyk-empty-message").removeClass("hidden");
+                                     }
+                                 });
+                             } else {
+                                 $('#koszyk-ilosc-pozycji-' + response.UsunProduktId).text(response.IloscUsuwanychProdutkow);
+                             }
+
+                             if (response.KoszykIloscPozycji == 0) {
+                                 $('#koszyk-button-zaplac').addClass('hidden');
+                                 $('#CenaCalkowita').addClass('invisible');
+                             }
+                             $('#calkowita-cena-wartosc').text(response.KoszykCenaCalkowita);
+                             $('#koszyk-naglowek-ilosc-elementow').text(response.KoszykIlosc);
+                         });
+                     return false;
+                 }
+             });
+         });
+    </script>
+
+    }

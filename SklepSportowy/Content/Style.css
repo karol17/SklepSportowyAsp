@@ -5,6 +5,7 @@
     margin: 0 auto;
 }
 
+
 .slogan-bg {
     height: 440px;
     width: 100%;
@@ -108,7 +109,46 @@ section.sekcja-produkty input:hover {
 .left img {
     max-width: 70%;
 }
+#koszyk {
+    margin-top: 30px;
+    margin-left: 2%;
+    width: 74%;
+    float: left;
+}
 
+    #koszyk table {
+        width: 100%;
+    }
+
+        #koszyk table th {
+            text-align: left;
+        }
+
+        #koszyk table td {
+            padding-top: 30px;
+            text-align: left;
+        }
+
+    #koszyk input {
+        padding:10px;
+        height: 40px;
+        border: none;
+        color: #fff;
+        background-color: #365DD7;
+        font-weight: bold;
+    }
+
+        #koszyk input:hover {
+            background-color: #254cc6;
+        }
+
+.hidden {
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
 footer {
     clear: both;
 }

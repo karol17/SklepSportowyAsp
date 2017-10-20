@@ -1,5 +1,7 @@
 ﻿using SklepSportowy.DAL;
+using SklepSportowy.Infrastructure;
 using SklepSportowy.Models;
+using SklepSportowy.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,48 +12,46 @@ namespace SklepSportowy.Controllers
 {
     public class KoszykController : Controller
     {
-        //Koszyk koszyk = new Koszyk();
+        private ISessionMeneger session { get; set; }
+        private KoszykMeneger koszyk;
+        private ProduktyContext db;
+
+        public KoszykController()
+        {
+            db = new ProduktyContext();
+            session = new SessionMeneger();
+            koszyk = new KoszykMeneger(session, db);
+        }
+        
         // GET: Koszyk
-        ProduktyContext db = new ProduktyContext();
+        
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult List()
-        {
-            return View(db.PozycjeZamowien.ToList());
-        }
-        public ActionResult DodajDoKoszyka( Produkt produkt, int ilosc=1)
-        {
-            
-            
-
-            
-            PozycjaZamowienia zamowienie = db.PozycjeZamowien.Where(z => z.ProduktId == produkt.ProduktId).FirstOrDefault();
-            if (zamowienie == null)
+            KoszykViewModel vm = new KoszykViewModel()
             {
-                db.PozycjeZamowien.Add(new PozycjaZamowienia
-                {
-
-                    ProduktId = produkt.ProduktId,
-                    Ilosc = ilosc
-                });
-            }
-            else
-                zamowienie.Ilosc += ilosc;
-            
-           
-
-            db.SaveChanges();
-            //koszyk.DodajDoKoszyka(ilosc, produkt);
-            return RedirectToAction("List");
+                PozycjaKoszyka = koszyk.PobierzKoszyk(),
+                WartoscKoszyka = koszyk.PobierzWartoscKoszyka()
+            };
+            return View(vm);
+        }
+        
+        public ActionResult DodajDoKoszyka( int id)
+        {
+            koszyk.DodajDoKoszuka(id);
+            return RedirectToAction("Index");
 
         }
-        public ActionResult UsunZKoszyka(Produkt produkt)
+        public ActionResult UsunZKoszyka(int produktId)
         {
-            var zamowienie = db.PozycjeZamowien.Where(p => p.ProduktId == produkt.ProduktId).FirstOrDefault();
-            db.PozycjeZamowien.Remove(zamowienie);
-            return View("List");
+            int iloscPozycji = koszyk.UsunZKoszyka(produktId);
+            KoszykUsunViewModel vm = new KoszykUsunViewModel()
+            {
+                UsunProduktId = produktId,
+                KoszykCenaCalkowita = koszyk.PobierzWartoscKoszyka(),
+                KoszykIlosc = koszyk.PobierzIloscPozycjiKoszyka(),
+                IloscUsuwanychProdutkow = iloscPozycji
+            };
+            return Json(vm);
         }
         public String WartoscKoszyka()
         {
