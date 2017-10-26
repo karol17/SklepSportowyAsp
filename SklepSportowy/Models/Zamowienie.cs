@@ -13,16 +13,21 @@ namespace SklepSportowy.Models
         [Required(ErrorMessage = "Wprowadź nazwisko")]
         [StringLength(50)]
         public string Nazwisko { get; set; }
-        public string Ulica { get; set; }
+        [Required(ErrorMessage = "Wprowadź adres")]
+        public string Adres { get; set; }
         [Required(ErrorMessage = "Wprowadź miasto")]
         [StringLength(100)]
         public string Miasto { get; set; }
-        [Required(ErrorMessage = "Wprowadź imię")]
+        [Required(ErrorMessage = "Wprowadź kod pocztowy")]
         [StringLength(6)]
         public string KodPocztowy { get; set; }
+        [Required(ErrorMessage = "Wprowadź numer telefonu")]
+        [Phone(ErrorMessage ="Wprowadź porawny numer telefonu")]
         public string Telefon { get; set; }
+        [Required(ErrorMessage = "Wprowadź emial")]
+        [EmailAddress(ErrorMessage = "Błędny format adresu email.")]
         public string Email { get; set; }
-        public string Komentarz { get; set; }
+        public string Uwagi { get; set; }
         public DateTime DataZamowienia { get; set; }
         public StanZamowienia StanZamowienia { get; set; }
         public decimal WartoscZamowienia { get; set; }

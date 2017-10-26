@@ -83,11 +83,11 @@ namespace SklepSportowy.Infrastructure
             int ilosc = koszyk.Sum(k => k.Ilosc);
             return ilosc;
         }
-        public Zamowienie UtworzZamowienie(Zamowienie zamowienie,string userId)
+        public Zamowienie UtworzZamowienie(Zamowienie zamowienie)
         {
             var koszyk = PobierzKoszyk();
             zamowienie.DataZamowienia = DateTime.Now;
-            //zamowienie.Userid = userId;
+            
             db.Zamowienia.Add(zamowienie);
 
             if (zamowienie.PozycjaZamowienia == null)
@@ -113,5 +113,6 @@ namespace SklepSportowy.Infrastructure
         {
             session.Set<List<PozycjaKoszyka>>(Consts.KoszykSessionKlucz, null);
         }
+       
     }
 }

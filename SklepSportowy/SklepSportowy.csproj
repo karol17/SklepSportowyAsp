@@ -110,7 +110,23 @@
   <ItemGroup>
     <Content Include="Content\Images\arrow_right.png" />
     <Content Include="Content\Images\banner.jpg" />
+    <Content Include="Content\Images\buty.jpg" />
+    <Content Include="Content\Images\deska.jpg" />
+    <Content Include="Content\Images\getry.jpg" />
+    <Content Include="Content\Images\kask.jpg" />
+    <Content Include="Content\Images\koszulka.jpg" />
+    <Content Include="Content\Images\narty.jpg" />
+    <Content Include="Content\Images\pilka-kosz.jpg" />
+    <Content Include="Content\Images\pilka-kosz1.jpg" />
+    <Content Include="Content\Images\pilka-siatka.png" />
+    <Content Include="Content\Images\pilka-siatka1.jpg" />
+    <Content Include="Content\Images\pilka-siatka2.jpg" />
+    <Content Include="Content\Images\pilka-tenis.jpg" />
     <Content Include="Content\Images\pilka.jpg" />
+    <Content Include="Content\Images\pilka2.jpg" />
+    <Content Include="Content\Images\rakieta.jpg" />
+    <Content Include="Content\Images\rower.jpg" />
+    <Content Include="Content\Images\spodenki.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -179,6 +195,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AppConfig.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Infrastructure\Consts.cs" />
     <Compile Include="Infrastructure\ISessionMeneger.cs" />
     <Compile Include="Infrastructure\KoszykMeneger.cs" />
@@ -202,10 +220,11 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Shared\_Kategorie.cshtml" />
     <Content Include="Views\Produkt\ProduktSzczegoly.cshtml" />
-    <Content Include="Views\Koszyk\List.cshtml" />
     <Content Include="Views\Koszyk\Index.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\Koszyk\Zaplac.cshtml" />
+    <Content Include="Views\Koszyk\PotwierdzenieZamowienia.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

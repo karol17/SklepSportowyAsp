@@ -1,4 +1,5 @@
 ﻿@model SklepSportowy.Models.Produkt
+@using SklepSportowy.Helpers
 @{
     ViewBag.Title = "ProduktSzczegoly";
 }
@@ -6,10 +7,10 @@
     <h2>ProduktSzczegoly</h2>
 
     <div class="left">
-        <img src="~/Content/Images/pilka.jpg" />
+        <img src="@Url.ImagePath(Model.Zdjecie)" />
 
-        <h1>Piłka</h1>
-        <h3>59,00 zł</h3>
+        <h1>@Model.NazwaProduktu</h1>
+        <h3>@String.Format("{0:c2}",Model.CenaProduktu)</h3>
 
         @* @Html.BeginForm("DodajDoKoszyka", "Koszyk", new { Model.})*@
 
@@ -17,10 +18,7 @@
     </div>
     <div class="right">
         <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, aut incidunt! Ratione quas harum saepe iusto nemo error rem exercitationem, cumque veniam sequi nihil debitis unde numquam porro maiores itaque! Lorem ipsum dolor sit, amet consectetur
-            adipisicing elit. Ipsa, aut incidunt! Ratione quas harum saepe iusto nemo error rem exercitationem, cumque veniam sequi nihil debitis unde numquam porro maiores itaque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, aut
-            incidunt! Ratione quas harum saepe iusto nemo error rem exercitationem, cumque veniam sequi nihil debitis unde numquam porro maiores itaque! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, aut incidunt! Ratione quas harum
-            saepe iusto nemo error rem exercitationem, cumque veniam sequi nihil debitis unde numquam porro maiores itaque!
+            @Model.OpisProduktu
         </p>
     </div>
     <div style="clear: both"></div>

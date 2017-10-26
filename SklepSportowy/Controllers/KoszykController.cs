@@ -59,14 +59,26 @@ namespace SklepSportowy.Controllers
             return String.Format("Suma: {0:c2}zł", sum);
 
         }
-        public ActionResult WyczyscKoszyk()
+        public ActionResult Zaplac()
         {
-            var zamowienia = db.PozycjeZamowien;
-            for(int i = zamowienia.Count() - 1; i == 0; i--)
-            {
-                zamowienia.Remove(zamowienia.Where(z => z.PozycjaZamowieniaId == i).FirstOrDefault());
-            }
-            return View("List");
+            return View( new Zamowienie());
         }
+        [HttpPost]
+        public ActionResult Zaplac(Zamowienie zamowienie)
+        {
+            if (ModelState.IsValid)
+            {
+                var noweZamowienie = koszyk.UtworzZamowienie(zamowienie);
+                koszyk.WyczyscKoszyk();
+                return RedirectToAction("PotwierdzenieZamowienia");
+            }
+            return View(zamowienie);
+        }
+        public ActionResult PotwierdzenieZamowienia()
+        {
+            return View();
+        }
+
+
     }
 }

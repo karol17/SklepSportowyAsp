@@ -17,7 +17,7 @@ namespace SklepSportowy.Controllers
 
             return RedirectToAction("List");
         }
-        public ActionResult List(int kategoriaId=0 )
+        public ActionResult List(int kategoriaId = 0)
         {
             ICollection<Produkt> produkty;
             if (kategoriaId == 0)

@@ -1,5 +1,5 @@
 ﻿@model SklepSportowy.ViewModel.KoszykViewModel
-    @using SklepSportowy.Infrastructure
+@using SklepSportowy.Helpers
 @{
     ViewBag.Title = "Index";
 }
@@ -18,13 +18,14 @@
             </tr>
         </thead>
         <tbody>
+           
             @foreach (var item in Model.PozycjaKoszyka)
             {
                 <tr id="koszyk-wiersz-@item.Produkt.ProduktId">
-                    <td><img src="~/Content/Images/pilka.jpg" alt="pilka" width="127" height="122" /></td>
+                    <td><img src="@Url.ImagePath(item.Produkt.Zdjecie)"  width="127" height="122" /></td>
                     <td>@item.Produkt.NazwaProduktu</td>
-                    <td>@item.Produkt.CenaProduktu</td>
-                    <td>@item.Ilosc</td>
+                    <td>@String.Format("{0:c2}",item.Produkt.CenaProduktu)</td>
+                    <td><span id="koszyk-ilosc-pozycji-@item.Produkt.ProduktId">@item.Ilosc</span></td>
                     
                     
                     <td>
@@ -35,19 +36,19 @@
 
                 </tr>
             }
-            <tr id="koszyk-empty-message" @if (Model.PozycjaKoszyka != null && Model.PozycjaKoszyka.Count > 0) {<text>clas="hidden"</text> }>
+            <tr id="koszyk-empty-message" @if (Model.PozycjaKoszyka != null && Model.PozycjaKoszyka.Count > 0) {<text>class="hidden"</text> }>
                 <td>Koszyk jest pusty.</td>
             </tr>
-         
+            
         </tbody>
     </table>
-    <div id="calkowita-cena-wartosc">
-        <b>Razem: @String.Format("{0:0.##}", Model.WartoscKoszyka) zł</b>
+    <div id="cena-calkowita" style="margin-top:10px">
+        <b>Razem: @String.Format("{0:c2}", Model.WartoscKoszyka)</b>
     </div>
     <div style="float:right">
-        
-        <input type="submit" value="Kontynuj zakupy">
-        <input type="submit" value="Zapłać">
+       
+        <a href="@Url.Action("List","Home")"><input type="submit" value="Kontynuj zakupy"></a>
+        <a href="@Url.Action("Zaplac","Koszyk")"><input id="koszyk-button-zaplac" type="submit" value="Zapłać"></a>
     </div>
     
 </div>
@@ -79,11 +80,8 @@
                                  $('#koszyk-ilosc-pozycji-' + response.UsunProduktId).text(response.IloscUsuwanychProdutkow);
                              }
 
-                             if (response.KoszykIloscPozycji == 0) {
-                                 $('#koszyk-button-zaplac').addClass('hidden');
-                                 $('#CenaCalkowita').addClass('invisible');
-                             }
-                             $('#calkowita-cena-wartosc').text(response.KoszykCenaCalkowita);
+                             
+                             $('#cena-calkowita').text(response.KoszykCenaCalkowita);
                              $('#koszyk-naglowek-ilosc-elementow').text(response.KoszykIlosc);
                          });
                      return false;

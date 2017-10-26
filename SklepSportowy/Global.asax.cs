@@ -1,4 +1,5 @@
 ﻿using SklepSportowy.App_Start;
+using SklepSportowy.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace SklepSportowy
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new ProduktyInitializer());
+            ProduktyContext db = new ProduktyContext();
+            db.Database.Initialize(true);
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

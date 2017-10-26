@@ -14,7 +14,7 @@ namespace SklepSportowy.Models
         [StringLength(100)]
         public string NazwaProduktu { get; set; }
         [Required(ErrorMessage ="Wprowadź opis produktu")]
-        [StringLength(500)]
+        
         public string OpisProduktu { get; set; }
         [StringLength(100)]
         public string Zdjecie { get; set; }

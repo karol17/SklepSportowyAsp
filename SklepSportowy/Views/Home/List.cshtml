@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<SklepSportowy.Models.Produkt>
+@using SklepSportowy.Helpers
 @{
     ViewBag.Title = "List";
 }
@@ -6,23 +7,26 @@
 
 <section class="sekcja-produkty">
 
-    <h1>Piłka nożna</h1>
+    <
     
         @foreach (var item in Model)
         {
             <div id="produkt">
 
-                <img src="~/Content/Images/pilka.jpg" />
-                <h2>@item.NazwaProduktu</h2>
-                <h3>@item.CenaProduktu</h3>
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, aut incidunt! Ratione quas harum saepe iusto
-                    nemo error rem exercitationem, cumque veniam sequi nihil debitis unde numquam porro maiores itaque!
-                    @*@Html.ActionLink("Więcej","ProduktSzczegoly","Produkt",new { id = item.ProduktId })</p>*@
-                    <a href="@Url.Action("ProduktSzczegoly", "Produkt", new { id = item.ProduktId})">Więcej</a>
+                <a href="@Url.Action("ProduktSzczegoly", "Produkt", new { id = item.ProduktId})">
+                    @*<img src="~/Content/Images/pilka.jpg" />*@
+                    <img src="@Url.ImagePath(item.Zdjecie)"width="227" height="222" />
+                    </a>
+                    <a href="@Url.Action("ProduktSzczegoly", "Produkt", new { id = item.ProduktId})">
+                        <h2>@item.NazwaProduktu</h2>
+                       </a>
+                        <h3>@String.Format("{0:C2}",item.CenaProduktu)</h3>
 
-                    <input type="submit" value="Dodaj do koszyka" />
-            </div>
+
+                      
+
+                        <a href="@Url.Action("DodajDoKoszyka","Koszyk",new {id=item.ProduktId })"><input type="submit" value="Dodaj do koszyka" /></a>
+</div>
         }
 
     

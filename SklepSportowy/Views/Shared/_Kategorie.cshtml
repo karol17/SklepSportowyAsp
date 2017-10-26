@@ -1,26 +1,19 @@
-﻿@*@model IEnumerable<SklepSportowy.Models.Kategoria>*@
+﻿
 <ul>
-    <li>@Html.ActionLink("Wszyskie kategorie", "List" , new { kategoriaId = 0 })</li>
-    <li>@Html.ActionLink("Piłka nożna", "List",  new { kategoriaId = 1 })</li>
-    <li>@Html.ActionLink("Siatkówka", "List",  new { kategoriaId = 2 })</li>
-    <li>@Html.ActionLink("Koszykówka", "List",  new { kategoriaId = 3 })</li>
-    <li>@Html.ActionLink("Piłka ręczna", "List", new { kategoriaId = 4 })</li>
-    <li>@Html.ActionLink("Tenis", "List",  new { kategoriaId = 5 })</li>
-    <li>@Html.ActionLink("Kolarstwo", "List",  new { kategoriaId = 6 })</li>
-    <li>@Html.ActionLink("Pływanie", "List",  new { kategoriaId = 7 })</li>
-    <li>@Html.ActionLink("Sporty zimowe", "List",  new { kategoriaId = 8 })</li>
-    <li>@Html.ActionLink("Inne", "List",  new { kategoriaId = 9 })</li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 0 })">Wszystkie kategorie</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 1 })">Piłka nożna</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 2 })">Siatkówka</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 3 })">Koszykówka</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 4 })">Piłka ręczna</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 5 })">Tenis</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 6 })">Kolarstwo</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 7 })">Pływanie</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 8 })">Sporty zimowe</a></li>
+    <li><a href="@Url.Action("List","Home",new { kategoriaId = 9 })">Inne</a></li>
     
     
     
     
-    @*<li><a href="#">Wszyskie kategorie</a></li>
-    <li><a href="#">Piłka nożna</a></li>
-    <li><a href="#">Siatkówka</a></li>
-    <li><a href="#">Koszykówka</a></li>
-    <li><a href="#">Sporty motorowe</a></li>
-    <li><a href="#">Sporty zimowe</a></li>
-    <li><a href="#">Pływanie</a></li>
-    <li><a href="#">Pozostałe</a></li>*@
+
 
 </ul>
